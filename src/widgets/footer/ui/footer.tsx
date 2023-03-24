@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
 export const Footer: FC = () => {
     return (
         <StyledContainer>
-            Footer
+            <input type={"submit"} value={"Next"}/>
         </StyledContainer>
     );
 };

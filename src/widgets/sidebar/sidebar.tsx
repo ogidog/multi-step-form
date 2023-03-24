@@ -8,16 +8,28 @@ import {StepNumber} from "entities/index";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px)  {
+    display: flex;
+    justify-content: center;
+    
+    padding: 7% 0px 15% 0px;
+    
     background-image: url(${bgSidebarMobileImg});
+    
   }
 
   @media (min-width: 1025px) {
-    background-image: url(${bgSidebarDesktopImg});
     grid-area: side-bar;
+    
+    display: grid;
+    grid-template-rows: repeat(4, fit-content(50px));
+    grid-row-gap: 50px;
 
+    background-image: url(${bgSidebarDesktopImg});
+    
     border-radius: 15px;
 
-    padding: 30px 30px 0px 50px;
+    padding:  15% 0px 0px 15%;
+    
   }
   
   background-repeat: no-repeat;
@@ -28,7 +40,10 @@ const StyledContainer = styled.div`
 export const Sidebar:FC = () => {
     return (
         <StyledContainer>
+            <StepNumber stepNumber={1} stepDescription={"your info"}/>
             <StepNumber stepNumber={2} stepDescription={"select plan"}/>
+            <StepNumber stepNumber={3} stepDescription={"add-ons"}/>
+            <StepNumber stepNumber={4} stepDescription={"summary"}/>
         </StyledContainer>
     );
 };
