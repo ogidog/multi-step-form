@@ -13,9 +13,10 @@ const StyledContainer = styled.div`
 
 `
 export const Footer: FC = () => {
+    const currentStep = 1
     return (
         <StyledContainer>
-            <input type={"submit"} value={"Next"}/>
+            <button type={"submit"} form={`step${currentStep}`}>{"Next"}</button>
         </StyledContainer>
     );
 };

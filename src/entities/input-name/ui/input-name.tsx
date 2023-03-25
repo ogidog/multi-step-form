@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC, useRef} from "react";
+import {FC} from "react";
 import {InputA} from "shared/index";
 
 export const InputName: FC = () => {
@@ -9,7 +9,7 @@ export const InputName: FC = () => {
             name={"personnelName"}
             type={"text"}
             label={"Name"}
-            placeholderText={"e.g. Stephen King"}
+            placeholderText={""}
             errorText={"This field is required."}
             required={true}
         />

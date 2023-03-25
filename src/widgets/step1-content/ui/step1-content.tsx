@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {FC} from "react";
+import {FC, FormEvent, FormEventHandler} from "react";
 import styled from "styled-components";
-import {InputName} from "entities/index";
+import {InputEmail, InputName, InputPhone} from "entities/index";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
     display: grid;
-    grid-template-rows: 50px 60px  fit-content(50px) 1fr;
+    grid-template-rows: 50px 60px repeat(3, 80px) 1fr;
 
     box-sizing: border-box;
     border-radius: 10px;
@@ -39,11 +39,24 @@ const Hint = styled.div`
 `;
 
 export const Step1Content: FC = () => {
+
+    const currentStep = 1;
+
+    const submitHandler: FormEventHandler = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const currentStepForm = document.forms.namedItem(`step${currentStep}`);
+
+    }
+
     return (
-        <StyledContainer>
-            <Title>Personnel info</Title>
-            <Hint>Please provide your name, email address, and phone number.</Hint>
-            <InputName/>
-        </StyledContainer>
+        <form id={`step${currentStep}`} name={`step${currentStep}`} onSubmit={submitHandler} autoComplete={"off"}>
+            <StyledContainer>
+                <Title>Personnel info</Title>
+                <Hint>Please provide your name, email address, and phone number.</Hint>
+                <InputName/>
+                <InputEmail/>
+                <InputPhone/>
+            </StyledContainer>
+        </form>
     );
 };

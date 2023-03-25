@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC} from "react";
+import {FC, useRef} from "react";
 import styled from "styled-components";
 
 type Props = {
@@ -12,6 +12,9 @@ type Props = {
     required?: boolean,
     type: string,
     maxLength?: number,
+    pattern?: string,
+
+    onChange?: (value: string) => string
 }
 
 const StyledContainer = styled.div`
@@ -70,17 +73,35 @@ const ErrorLabel = styled(Label)<{ text: string }>`
   text-align: right;
 
   display: none;
-  // display: ${props => props.text || false};
 `
 
 export const InputA: FC<Props> = (props) => {
-    const {id, name, errorText, label, placeholderText, required = true, type, maxLength} = props;
+    const inputRef = useRef<HTMLInputElement>(null)
+    const {
+        id, name, errorText, label, placeholderText, required = true,
+        pattern, type, maxLength, onChange
+    } = props;
 
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (onChange) {
+            inputRef.current!.value = onChange(inputRef.current!.value);
+        }
+    }
+    const patternProp = pattern ? {pattern: pattern} : {};
     return (
         <StyledContainer>
             <Label htmlFor={"personnelName"}>{label}</Label>
             <ErrorLabel id={"error"} text={errorText}>{errorText}</ErrorLabel>
-            <Input id={id} name={name} type={type} placeholder={placeholderText} required={true}/>
+            <Input
+                id={id}
+                name={name}
+                type={type}
+                placeholder={placeholderText}
+                required={required}
+                ref={inputRef}
+                onChange={changeHandler.bind(this)}
+                {...patternProp}
+            />
         </StyledContainer>
     );
 }
