@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC, useRef} from "react";
+import {FC, ForwardedRef, forwardRef, useRef} from "react";
 import styled from "styled-components";
 
 type Props = {
@@ -14,7 +14,8 @@ type Props = {
     maxLength?: number,
     pattern?: string,
 
-    onChange?: (value: string) => string
+    onChange?: (value: string) => string,
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 const StyledContainer = styled.div`
@@ -75,18 +76,19 @@ const ErrorLabel = styled(Label)<{ text: string }>`
   display: none;
 `
 
-export const InputA: FC<Props> = (props) => {
-    const inputRef = useRef<HTMLInputElement>(null)
+export const InputA = forwardRef<HTMLInputElement, Props>((props, ref) => {
+
     const {
         id, name, errorText, label, placeholderText, required = true,
-        pattern, type, maxLength, onChange
+        pattern, type, maxLength = 25, onKeyDown
     } = props;
 
-    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (onChange) {
-            inputRef.current!.value = onChange(inputRef.current!.value);
+    const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (onKeyDown) {
+            onKeyDown(event)
         }
     }
+
     const patternProp = pattern ? {pattern: pattern} : {};
     return (
         <StyledContainer>
@@ -98,10 +100,11 @@ export const InputA: FC<Props> = (props) => {
                 type={type}
                 placeholder={placeholderText}
                 required={required}
-                ref={inputRef}
-                onChange={changeHandler.bind(this)}
+                ref={ref}
+                onKeyDown={keyDownHandler.bind(this)}
+                maxLength={maxLength}
                 {...patternProp}
             />
         </StyledContainer>
     );
-}
+});

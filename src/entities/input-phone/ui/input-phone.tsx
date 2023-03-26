@@ -1,23 +1,40 @@
 import * as React from 'react';
-import {FC} from "react";
-import {InputA} from "../../../shared";
+import {FC, useRef} from "react";
+import {InputA} from "shared/index";
+import {PHONE_CODES} from "app/lib/const";
 
 type Props = {};
-export const InputPhone: FC = (props: Props) => {
-    const changeHandler = (value: string) => {
+export const InputPhone: FC = () => {
 
-        const lastDigit = value.slice(-1);
+    const inputRef = useRef<HTMLInputElement>(null)
 
-        if (!value.match(/^[0-9\+]*$/)) {
-            return value.slice(0, -1);
+    const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+
+        let value = inputRef.current!.value;
+        let lastSpaceIndex = value.lastIndexOf(" ");
+
+        if (event.key !== "Backspace") {
+
+            if (!event.key.match(/^[0-9\+]*$/)) {
+                event.preventDefault()
+            }
+
+            if (PHONE_CODES[value]) {
+                inputRef.current!.value += " ";
+                return;
+            }
+
+            if (lastSpaceIndex !== -1) {
+                if (value.slice(lastSpaceIndex + 1, value.length).length === 3) {
+                    inputRef.current!.value += " ";
+                    return;
+                }
+            }
         }
-
-        if (!value.startsWith("\+")) {
-            return ""
-        }
-
-        return value;
     }
+
+    const pattern = `\\+\\d+\\s[\\d+\\s]{1,}`
+
     return (
         <InputA
             id={"personnelPhone"}
@@ -26,8 +43,10 @@ export const InputPhone: FC = (props: Props) => {
             label={"Phone Number"}
             placeholderText={"phone number with country code"}
             errorText={"Invalid phone number."}
-            onChange={changeHandler}
-            pattern={"\\+\\d+"}
+            onKeyDown={keyDownHandler}
+            pattern={pattern}
+            ref={inputRef}
+            maxLength={20}
         />
     );
 };
