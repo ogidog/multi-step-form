@@ -9,9 +9,10 @@ export const InputName: FC = () => {
             name={"personnelName"}
             type={"text"}
             label={"Name"}
-            placeholderText={""}
+            placeholderText={"e.g. Stephen King"}
             errorText={"This field is required."}
             required={true}
+            maxLength={32}
         />
     );
 };

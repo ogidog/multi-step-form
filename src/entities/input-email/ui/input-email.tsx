@@ -12,6 +12,7 @@ export const InputEmail:FC = () => {
             label={"Email Address"}
             placeholderText={"e.g. stephenK@gmail.com"}
             errorText={"Invalid email address."}
+            maxLength={320}
         />
     );
 };

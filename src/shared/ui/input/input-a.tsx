@@ -5,7 +5,7 @@ import styled from "styled-components";
 type Props = {
     id: string,
     name: string,
-    placeholderText: string,
+    placeholderText?: string,
     label: string
     errorText: string,
 
@@ -79,7 +79,7 @@ const ErrorLabel = styled(Label)<{ text: string }>`
 export const InputA = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
     const {
-        id, name, errorText, label, placeholderText, required = true,
+        id, name, errorText, label, placeholderText = "", required = true,
         pattern, type, maxLength = 25, onKeyDown
     } = props;
 
