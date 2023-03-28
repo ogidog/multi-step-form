@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from "styled-components";
-import {Step1Content} from "../../step1-content/ui/step1-content";
+import {Outlet} from "react-router-dom";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
 export const Main = () => {
     return (
         <StyledContainer>
-            <Step1Content/>
+            <Outlet/>
         </StyledContainer>
     );
 };
