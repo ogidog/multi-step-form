@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC, ForwardedRef, forwardRef, useRef} from "react";
+import {forwardRef} from "react";
 import styled from "styled-components";
 
 type Props = {
@@ -80,7 +80,7 @@ export const InputA = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
     const {
         id, name, errorText, label, placeholderText = "", required = true,
-        pattern, type, maxLength = 25, onKeyDown
+        pattern, type, maxLength = 25, onKeyDown,
     } = props;
 
     const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {

@@ -1,9 +1,12 @@
 import * as React from 'react';
-import {FC, FormEvent, FormEventHandler} from "react";
+import {FC, FormEvent, FormEventHandler, memo, useEffect} from "react";
 import styled from "styled-components";
 import {InputEmail, InputName, InputPhone} from "entities/index";
-import {IStep1State, setData, setData as setStep1Data} from "shared/slices/step1Slice";
-import {useDispatch} from "react-redux";
+import {IStep1State, setData as setStep1Data} from "shared/slices/step1Slice";
+import {useDispatch, useSelector} from "react-redux";
+import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
+import {useNavigate} from "react-router-dom";
+import {RootState} from "shared/store/store";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -42,8 +45,19 @@ const Hint = styled.div`
 
 export const Step1Content: FC = () => {
 
-    const currentStep = 1;
+    let currentStep = useSelector(selectCurrentStepNumber);
+    const step1State: IStep1State = useSelector((state: RootState) => state.step1)
     const dispatch = useDispatch()
+    //const navigate = useNavigate();
+
+    useEffect(() => {
+        const step1Form = document.forms.namedItem(`step${currentStep}`);
+        if (step1Form) {
+            (step1Form.elements.namedItem("personnelName") as HTMLInputElement).value = step1State.name;
+            (step1Form.elements.namedItem("personnelEmail") as HTMLInputElement).value = step1State.email;
+            (step1Form.elements.namedItem("personnelPhone") as HTMLInputElement).value = step1State.phone;
+        }
+    }, [])
 
     const submitHandler: FormEventHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -54,8 +68,9 @@ export const Step1Content: FC = () => {
                 email: (step1Form.elements.namedItem("personnelEmail") as HTMLInputElement).value,
                 phone: (step1Form.elements.namedItem("personnelPhone") as HTMLInputElement).value,
             }
-            console.log(step1Data)
             dispatch(setStep1Data(step1Data));
+            dispatch(nextStep());
+            //navigate(`/step${++currentStep}`)
         }
     }
 

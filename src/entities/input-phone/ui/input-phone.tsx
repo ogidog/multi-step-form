@@ -3,7 +3,6 @@ import {FC, useRef} from "react";
 import {InputA} from "shared/index";
 import {PHONE_CODES} from "app/lib/const";
 
-type Props = {};
 export const InputPhone: FC = () => {
 
     const inputRef = useRef<HTMLInputElement>(null)

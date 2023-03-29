@@ -1,9 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
-import stepSlice from "../slices/step1Slice";
+import step1Slice from "shared/slices/step1Slice";
+import step2Slice from "shared/slices/step2Slice";
+import controlSlice from "shared/slices/controlSlice";
 
 export const store = configureStore({
     reducer: {
-        "step1": stepSlice
+        "step1": step1Slice,
+        "step2": step2Slice,
+        "control": controlSlice,
     }
 });
 

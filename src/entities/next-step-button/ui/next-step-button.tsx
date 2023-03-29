@@ -1,9 +1,12 @@
 import * as React from 'react';
 import styled from "styled-components";
+import {IControlSlice, selectCurrentStepNumber, selectTotalSteps} from "shared/slices/controlSlice";
+import {FC} from "react";
+import {useSelector} from "react-redux";
 
-const Button = styled.button`
+const Button = styled.button<Props>`
   box-sizing: border-box;
-  
+
   width: fit-content;
   height: 40px;
   padding-left: 15px;
@@ -11,16 +14,21 @@ const Button = styled.button`
 
   border-width: 0px;
   border-radius: 3px;
-  
+
   background-color: var(--marine-blue);
-  
+
   color: var(--white);
   font-size: var(--font-small);
   font-weight: 400;
+
+  visibility: ${props => props.totalSteps === props.currentStepNumber ? 'hidden' : 'visible'};
 `
 
-export const NextStepButton = () => {
+type Props = IControlSlice;
+
+export const NextStepButton: FC<Props> = (props) => {
     return (
-        <Button type={"submit"} form={`step`}>Next Step</Button>
+        <Button totalSteps={props.totalSteps} currentStepNumber={props.currentStepNumber} type={"submit"}
+                form={`step${props.currentStepNumber}`}>Next Step</Button>
     );
 };

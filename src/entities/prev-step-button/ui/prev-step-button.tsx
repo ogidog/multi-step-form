@@ -1,7 +1,11 @@
 import * as React from 'react';
 import styled from "styled-components";
+import {IControlSlice, prevStep} from "shared/slices/controlSlice";
+import {FC} from "react";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
-const Button = styled.button`
+const Button = styled.button<Props>`
   box-sizing: border-box;
 
   width: fit-content;
@@ -16,10 +20,21 @@ const Button = styled.button`
   color: var(--cool-gray);
   font-size: var(--font-small);
   font-weight: 700;
+  visibility: ${props => props.currentStepNumber === 1 ? 'hidden' : 'visible'};
 `
 
-export const PrevStepButton = () => {
+type Props = Pick<IControlSlice, 'currentStepNumber'>
+
+export const PrevStepButton: FC<Props> = (props) => {
+    const dispatch = useDispatch();
+    //const navigate = useNavigate();
+
+    const clickHandler = () => {
+        dispatch(prevStep());
+        //navigate(`/step${props.currentStepNumber - 1}`)
+    }
+
     return (
-        <Button>Go Back</Button>
+        <Button currentStepNumber={props.currentStepNumber} onClick={clickHandler}>Go Back</Button>
     );
 };
