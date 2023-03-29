@@ -3,8 +3,8 @@ import styled from "styled-components";
 import {Outlet} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectCurrentStepNumber} from "shared/slices/controlSlice";
-import {Step1Content} from "widgets/step1-content/ui/step1-content";
-import {Step2Content} from "widgets/step2-content/ui/step2-content";
+import {Step1Form} from "widgets/step1-form/ui/step1-form";
+import {Step2Form} from "widgets/step2-form/ui/step2-form";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -24,11 +24,11 @@ export const Main = () => {
     const selectStepContent = () => {
         switch (currentStepNumber) {
             case 1:
-                return <Step1Content/>
+                return <Step1Form/>
             case 2:
-                return <Step2Content/>
+                return <Step2Form/>
             default:
-                return <Step1Content/>
+                return <Step1Form/>
         }
     }
     return (

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC, FormEvent, FormEventHandler, memo, useEffect} from "react";
+import {FC, FormEvent, FormEventHandler, useEffect} from "react";
 import styled from "styled-components";
 import {InputEmail, InputName, InputPhone} from "entities/index";
 import {IStep1State, setData as setStep1Data} from "shared/slices/step1Slice";
@@ -43,7 +43,7 @@ const Hint = styled.div`
   height: 50px;
 `;
 
-export const Step1Content: FC = () => {
+export const Step1Form: FC = () => {
 
     let currentStep = useSelector(selectCurrentStepNumber);
     const step1State: IStep1State = useSelector((state: RootState) => state.step1)
