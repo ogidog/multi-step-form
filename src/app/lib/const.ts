@@ -560,8 +560,9 @@ export const PHONE_CODES: { [key: string]: string } = {
     "+45": "+45",
     "+968": "+968",
     "+221": "+221"
-}
+};
 
-export const PLANS = ["Arcade" , "Advanced" , "Pro"]
-export const PRICE_MONTHLY = [9 , 12 , 15]
-export const PRICE_YEARLY = [90 , 120 , 150]
+export const TOTAL_STEPS = 4;
+export const PLANS = ["Arcade" , "Advanced" , "Pro"];
+export const PRICE_MONTHLY = [9 , 12 , 15];
+export const PRICE_YEARLY = [90 , 120 , 150];

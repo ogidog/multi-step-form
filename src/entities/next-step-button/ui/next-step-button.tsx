@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from "styled-components";
-import {IControlSlice, selectCurrentStepNumber, selectTotalSteps} from "shared/slices/controlSlice";
+import {IControlSlice} from "shared/slices/controlSlice";
 import {FC} from "react";
-import {useSelector} from "react-redux";
+import {TOTAL_STEPS} from "app/lib/const";
 
 const Button = styled.button<Props>`
   box-sizing: border-box;
@@ -24,11 +24,12 @@ const Button = styled.button<Props>`
   visibility: ${props => props.totalSteps === props.currentStepNumber ? 'hidden' : 'visible'};
 `
 
-type Props = IControlSlice;
+type Props = {totalSteps: number} & Pick<IControlSlice, "currentStepNumber">;
+
 
 export const NextStepButton: FC<Props> = (props) => {
     return (
-        <Button totalSteps={props.totalSteps} currentStepNumber={props.currentStepNumber} type={"submit"}
+        <Button totalSteps={TOTAL_STEPS} currentStepNumber={props.currentStepNumber} type={"submit"}
                 form={`step${props.currentStepNumber}`}>Next Step</Button>
     );
 };

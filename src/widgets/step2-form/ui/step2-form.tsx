@@ -11,7 +11,7 @@ import {PLANS, PRICE_MONTHLY, PRICE_YEARLY} from "app/lib/const";
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
     display: grid;
-    grid-template-rows: 50px 60px repeat(3, 80px) 1fr;
+    grid-template-rows: 50px 70px repeat(3, 90px) 1fr;
 
     box-sizing: border-box;
     border-radius: 10px;
@@ -40,7 +40,7 @@ const Hint = styled.div`
   font-weight: 400;
   color: var(--cool-gray);
   font-size: var(--font-medium);
-  height: 50px;
+  
 `;
 
 export const Step2Form: FC = () => {
@@ -53,10 +53,10 @@ export const Step2Form: FC = () => {
     const options = () => {
         return PLANS.map((plan, index) => {
             if (billing === "Monthly") {
-                return <PlanOption key={index} icon={""} plan={plan} price={PRICE_MONTHLY[index]} billing={billing}/>
+                return <PlanOption key={index} plan={plan} price={PRICE_MONTHLY[index]} billing={billing}/>
             }
             if (billing === "Yearly") {
-                return <PlanOption key={index} icon={""} plan={plan} price={PRICE_YEARLY[index]} billing={billing}/>
+                return <PlanOption key={index} plan={plan} price={PRICE_YEARLY[index]} billing={billing}/>
             }
         });
     }

@@ -3,7 +3,8 @@ import {FC} from "react";
 import styled from "styled-components";
 import {NextStepButton, PrevStepButton} from "entities/index";
 import {useSelector} from "react-redux";
-import {selectCurrentStepNumber, selectTotalSteps} from "shared/slices/controlSlice";
+import {selectCurrentStepNumber} from "shared/slices/controlSlice";
+import {TOTAL_STEPS} from "app/lib/const";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -27,12 +28,11 @@ const StyledContainer = styled.div`
 `
 export const Footer: FC = () => {
     const currentStepNumber = useSelector(selectCurrentStepNumber);
-    const totalSteps = useSelector(selectTotalSteps);
 
     return (
         <StyledContainer>
             <PrevStepButton currentStepNumber={currentStepNumber}/>
-            <NextStepButton currentStepNumber={currentStepNumber} totalSteps={totalSteps}/>
+            <NextStepButton totalSteps={TOTAL_STEPS} currentStepNumber={currentStepNumber}/>
         </StyledContainer>
     );
 };

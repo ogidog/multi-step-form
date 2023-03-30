@@ -3,12 +3,10 @@ import {RootState} from "../store/store";
 
 export interface IControlSlice {
     currentStepNumber: number,
-    totalSteps: number,
 }
 
 const initialState: IControlSlice = {
-    currentStepNumber: 1,
-    totalSteps: 4,
+    currentStepNumber: 2,
 }
 
 const controlSlice = createSlice({
@@ -25,7 +23,6 @@ const controlSlice = createSlice({
 });
 
 export const selectCurrentStepNumber = (state: RootState) => state.control.currentStepNumber;
-export const selectTotalSteps = (state: RootState) => state.control.totalSteps;
 
 export const {nextStep, prevStep} = controlSlice.actions;
 export default controlSlice.reducer
