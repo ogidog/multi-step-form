@@ -41,9 +41,10 @@ const Label = styled.label`
 
 type Props = {
     onChange?: (checked: boolean) => void;
+    checked?: boolean;
 };
 export const Toggle = (props: Props) => {
-    const {onChange} = props;
+    const {onChange, checked = false} = props;
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(event.target.checked)
@@ -56,7 +57,7 @@ export const Toggle = (props: Props) => {
                     <Switcher id={"switcher"}/>
                 </SwitcherContainer>
             </Label>
-            <Input type={"checkbox"} id={"billing"} name={"billing"} onChange={changeHandler}/>
+            <Input type={"checkbox"} id={"billing"} name={"billing"} onChange={changeHandler} checked={checked}/>
         </>
     );
 };

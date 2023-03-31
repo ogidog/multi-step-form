@@ -80,7 +80,7 @@ export const InputA = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
     const {
         id, name, errorText, label, placeholderText = "", required = true,
-        pattern, type, maxLength = 25, onKeyDown,
+        pattern = "*", type, maxLength = 25, onKeyDown,
     } = props;
 
     const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -89,7 +89,6 @@ export const InputA = forwardRef<HTMLInputElement, Props>((props, ref) => {
         }
     }
 
-    const patternProp = pattern ? {pattern: pattern} : {};
     return (
         <StyledContainer>
             <Label htmlFor={"personnelName"}>{label}</Label>
@@ -103,7 +102,7 @@ export const InputA = forwardRef<HTMLInputElement, Props>((props, ref) => {
                 ref={ref}
                 onKeyDown={keyDownHandler.bind(this)}
                 maxLength={maxLength}
-                {...patternProp}
+                pattern={pattern}
             />
         </StyledContainer>
     );

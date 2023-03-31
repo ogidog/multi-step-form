@@ -45,7 +45,7 @@ const Hint = styled.div`
 
 export const Step1Form: FC = () => {
 
-    let currentStep = useSelector(selectCurrentStepNumber);
+    const currentStep = useSelector(selectCurrentStepNumber);
     const step1State: IStep1State = useSelector((state: RootState) => state.step1)
     const dispatch = useDispatch()
     //const navigate = useNavigate();

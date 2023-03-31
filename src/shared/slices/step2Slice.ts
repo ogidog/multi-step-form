@@ -28,6 +28,7 @@ const step2Slice = createSlice({
 });
 
 export const selectBilling = (state: RootState) => state.step2.billing;
+export const selectPlan = (state: RootState) => state.step2.plan;
 
 export const {setData, changeBilling} = step2Slice.actions;
 export default step2Slice.reducer;

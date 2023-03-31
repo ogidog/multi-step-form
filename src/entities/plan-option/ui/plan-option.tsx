@@ -26,9 +26,9 @@ const Label = styled.label<{ billing?: IStep2State["billing"] }>`
     border: 1px solid var(--marine-blue);
     background-color: var(--magnolia);
   }
-  
-  & div[id="discount"]{
-    display: ${props=>props.billing === "Monthly"? "none": "block"};
+
+  & div[id="discount"] {
+    display: ${props => props.billing === "Monthly" ? "none" : "block"};
   }
 
   -webkit-user-select: none;
@@ -67,13 +67,13 @@ const Discount = styled.div`
   font-weight: 500;
   font-size: var(--font-small);
   color: var(--marine-blue);
-  
+
 `;
 
-type Props = IStep2State;
+type Props = { checked?: boolean } & IStep2State;
 
 export const PlanOption = (props: Props) => {
-    const {plan, price, billing} = props;
+    const {plan, price, billing, checked = false} = props;
     const payment = `${price}/${billing === "Monthly" ? "mo" : "yr"}`;
 
     return (
@@ -84,7 +84,7 @@ export const PlanOption = (props: Props) => {
                 <Price>{payment}</Price>
                 <Discount id={"discount"}>{DISCOUNT}</Discount>
             </Label>
-            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan}/>
+            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan} defaultChecked={checked} />
         </>
 
     );

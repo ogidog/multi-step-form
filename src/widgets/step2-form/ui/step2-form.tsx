@@ -2,9 +2,8 @@ import * as React from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
-import {IStep2State, selectBilling, setData as setStep2Data} from "shared/slices/step2Slice";
-import {RootState} from "shared/store/store";
-import {FC, FormEvent, FormEventHandler} from "react";
+import {selectBilling, selectPlan, setData as setStep2Data} from "shared/slices/step2Slice";
+import {FC, FormEvent, FormEventHandler, useEffect} from "react";
 import {BillingToggle, PlanOption} from "entities/index";
 import {PLANS, PRICE} from "shared/lib/const";
 
@@ -43,21 +42,17 @@ const Hint = styled.div`
 
 `;
 
-const ErrorLabel = styled.label`
-  color: var(--strawberry-red);
-  font-weight: 500;
-  display: block;
-`
-
 export const Step2Form: FC = () => {
 
     const billing = useSelector(selectBilling);
-    let currentStep = useSelector(selectCurrentStepNumber);
-    const dispatch = useDispatch()
+    const plan = useSelector(selectPlan)
+    const currentStep = useSelector(selectCurrentStepNumber);
+    const dispatch = useDispatch();
 
     const options = () => {
-        return PLANS.map((plan, index) => {
-            return <PlanOption key={index} plan={plan} price={PRICE[billing][plan]} billing={billing}/>
+        return PLANS.map((_plan, index) => {
+            const checked = plan === _plan ? true : false;
+            return <PlanOption key={index} plan={_plan} price={PRICE[billing][_plan]} billing={billing} checked={checked}/>
         });
     }
 
