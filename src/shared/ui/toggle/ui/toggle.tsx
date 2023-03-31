@@ -40,13 +40,13 @@ const Label = styled.label`
 `;
 
 type Props = {
-    onChange: (checked: boolean) => void;
+    onChange?: (checked: boolean) => void;
 };
 export const Toggle = (props: Props) => {
     const {onChange} = props;
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(event.target.checked)
+        onChange && onChange(event.target.checked)
     }
 
     return (

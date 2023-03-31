@@ -18,7 +18,7 @@ const Button = styled.button<Props>`
   background-color: var(--marine-blue);
 
   color: var(--white);
-  font-size: var(--font-small);
+  font-size: var(--font-normal);
   font-weight: 400;
 
   visibility: ${props => props.totalSteps === props.currentStepNumber ? 'hidden' : 'visible'};

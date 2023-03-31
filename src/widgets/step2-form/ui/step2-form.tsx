@@ -11,7 +11,7 @@ import {PLANS, PRICE} from "shared/lib/const";
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
     display: grid;
-    grid-template-rows: 50px 70px repeat(3, 90px) 50px 1fr;
+    grid-template-rows: 50px 60px repeat(3, 90px) 50px 1fr;
 
     box-sizing: border-box;
     border-radius: 10px;
@@ -43,13 +43,16 @@ const Hint = styled.div`
 
 `;
 
-type IFormData = Omit<IStep2State, "billing">
+const ErrorLabel = styled.label`
+  color: var(--strawberry-red);
+  font-weight: 500;
+  display: block;
+`
 
 export const Step2Form: FC = () => {
 
     const billing = useSelector(selectBilling);
     let currentStep = useSelector(selectCurrentStepNumber);
-    const step2State: IStep2State = useSelector((state: RootState) => state.step2)
     const dispatch = useDispatch()
 
     const options = () => {
@@ -61,9 +64,9 @@ export const Step2Form: FC = () => {
     const submitHandler: FormEventHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const stepForm = document.forms.namedItem(`step${currentStep}`);
-        if (stepForm) {
-            const plan = (new FormData(stepForm)).get("plan")
+        const stepFormElem = document.forms.namedItem(`step${currentStep}`);
+        if (stepFormElem) {
+            const plan = (new FormData(stepFormElem)).get("plan")
             if (plan) {
                 dispatch(setStep2Data({"plan": plan.toString(), "price": PRICE[billing][plan.toString()]}))
                 dispatch(nextStep());

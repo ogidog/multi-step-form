@@ -28,14 +28,14 @@ const StyledContainer = styled.div`
 
 const MonthlyOption = styled.div`
   font-weight: 700;
-  font-size: var(--font-small);
+  font-size: var(--font-normal);
   color: var(--marine-blue);
   text-align: end;
 `;
 
 const YearlyOption = styled.div`
   font-weight: 700;
-  font-size: var(--font-small);
+  font-size: var(--font-normal);
   color: var(--cool-gray);
   text-align: start;
 `;

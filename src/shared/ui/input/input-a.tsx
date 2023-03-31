@@ -43,7 +43,7 @@ const Input = styled.input`
   border: 2px solid var(--light-gray);
 
   text-indent: 10px;
-  font-size: var(--font-small);
+  font-size: var(--font-normal);
   color: var(--marine-blue);
   font-weight: 700;
 
@@ -51,7 +51,7 @@ const Input = styled.input`
 
   &::placeholder {
     color: var(--cool-gray);
-    font-size: var(--font-small);
+    font-size: var(--font-normal);
     font-weight: 500;
   }
 
@@ -64,7 +64,7 @@ const Label = styled.label`
   grid-area: label;
 
   color: var(--marine-blue);
-  font-size: var(--font-small);
+  font-size: var(--font-normal);
   font-weight: 500;
 `
 

@@ -569,4 +569,5 @@ export const PLANS = ["Arcade", "Advanced", "Pro"];
 export const PRICE: { [key in IStep2State["billing"]]: { [key: string]: number } } = {
     "Monthly": {"Arcade": 9, "Advanced": 12, "Pro": 15},
     "Yearly": {"Arcade": 90, "Advanced": 120, "Pro": 150}
-}
+};
+export const DISCOUNT = "2 months free";

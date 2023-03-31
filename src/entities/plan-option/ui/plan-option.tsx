@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {IStep2State} from "shared/slices/step2Slice";
 import styled from "styled-components";
+import {DISCOUNT} from "shared/lib/const";
 
 
-const Label = styled.label`
+const Label = styled.label<{ billing?: IStep2State["billing"] }>`
   display: grid;
   grid-template-columns: 40px 1fr;
-  grid-template-areas: "icon plan"
-                       "icon price";
+  grid-template-areas: ${props => props.billing === "Monthly" ? '"icon plan" "icon price"' : '"icon plan" "icon price" "empty discount"'};
   grid-row-gap: 5px;
   grid-column-gap: 20px;
 
@@ -25,6 +25,10 @@ const Label = styled.label`
   &:has( + input:checked) {
     border: 1px solid var(--marine-blue);
     background-color: var(--magnolia);
+  }
+  
+  & div[id="discount"]{
+    display: ${props=>props.billing === "Monthly"? "none": "block"};
   }
 
   -webkit-user-select: none;
@@ -58,6 +62,14 @@ const Price = styled.div`
   color: var(--light-gray);
 `
 
+const Discount = styled.div`
+  grid-area: discount;
+  font-weight: 500;
+  font-size: var(--font-small);
+  color: var(--marine-blue);
+  
+`;
+
 type Props = IStep2State;
 
 export const PlanOption = (props: Props) => {
@@ -66,12 +78,13 @@ export const PlanOption = (props: Props) => {
 
     return (
         <>
-            <Label htmlFor={`plan${plan}`}>
+            <Label htmlFor={`plan${plan}`} billing={billing}>
                 <Icon src={require(`../assets/icon-${plan.toLowerCase()}.svg`)}/>
                 <Plan>{plan}</Plan>
                 <Price>{payment}</Price>
+                <Discount id={"discount"}>{DISCOUNT}</Discount>
             </Label>
-            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan} required={true}/>
+            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan}/>
         </>
 
     );
