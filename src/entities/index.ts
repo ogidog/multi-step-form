@@ -5,5 +5,6 @@ import {InputEmail} from "./input-email/ui/input-email";
 import {NextStepButton} from "./next-step-button/ui/next-step-button";
 import {PrevStepButton} from "./prev-step-button/ui/prev-step-button";
 import {PlanOption} from "./plan-option/ui/plan-option";
+import {BillingToggle} from "./billing-toggle/ui/billing-toggle";
 
-export {StepNumber, InputName, InputPhone, InputEmail, NextStepButton, PrevStepButton, PlanOption};
+export {StepNumber, InputName, InputPhone, InputEmail, NextStepButton, PrevStepButton, PlanOption, BillingToggle};

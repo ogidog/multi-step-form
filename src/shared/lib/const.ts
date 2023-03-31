@@ -1,3 +1,5 @@
+import {IStep2State} from "../slices/step2Slice";
+
 export const PHONE_CODES: { [key: string]: string } = {
     "+502": "+502",
     "+65": "+65",
@@ -563,6 +565,8 @@ export const PHONE_CODES: { [key: string]: string } = {
 };
 
 export const TOTAL_STEPS = 4;
-export const PLANS = ["Arcade" , "Advanced" , "Pro"];
-export const PRICE_MONTHLY = [9 , 12 , 15];
-export const PRICE_YEARLY = [90 , 120 , 150];
+export const PLANS = ["Arcade", "Advanced", "Pro"];
+export const PRICE: { [key in IStep2State["billing"]]: { [key: string]: number } } = {
+    "Monthly": {"Arcade": 9, "Advanced": 12, "Pro": 15},
+    "Yearly": {"Arcade": 90, "Advanced": 120, "Pro": 150}
+}

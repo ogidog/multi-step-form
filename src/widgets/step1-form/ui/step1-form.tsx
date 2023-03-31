@@ -51,24 +51,24 @@ export const Step1Form: FC = () => {
     //const navigate = useNavigate();
 
     useEffect(() => {
-        const step1Form = document.forms.namedItem(`step${currentStep}`);
-        if (step1Form) {
-            (step1Form.elements.namedItem("personnelName") as HTMLInputElement).value = step1State.name;
-            (step1Form.elements.namedItem("personnelEmail") as HTMLInputElement).value = step1State.email;
-            (step1Form.elements.namedItem("personnelPhone") as HTMLInputElement).value = step1State.phone;
+        const stepForm = document.forms.namedItem(`step${currentStep}`);
+        if (stepForm) {
+            (stepForm.elements.namedItem("personnelName") as HTMLInputElement).value = step1State.name;
+            (stepForm.elements.namedItem("personnelEmail") as HTMLInputElement).value = step1State.email;
+            (stepForm.elements.namedItem("personnelPhone") as HTMLInputElement).value = step1State.phone;
         }
     }, [])
 
     const submitHandler: FormEventHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const step1Form = document.forms.namedItem(`step${currentStep}`);
-        if (step1Form) {
-            const step1Data: IStep1State = {
-                name: (step1Form.elements.namedItem("personnelName") as HTMLInputElement).value,
-                email: (step1Form.elements.namedItem("personnelEmail") as HTMLInputElement).value,
-                phone: (step1Form.elements.namedItem("personnelPhone") as HTMLInputElement).value,
+        const stepForm = document.forms.namedItem(`step${currentStep}`);
+        if (stepForm) {
+            const stepData: IStep1State = {
+                name: (stepForm.elements.namedItem("personnelName") as HTMLInputElement).value,
+                email: (stepForm.elements.namedItem("personnelEmail") as HTMLInputElement).value,
+                phone: (stepForm.elements.namedItem("personnelPhone") as HTMLInputElement).value,
             }
-            dispatch(setStep1Data(step1Data));
+            dispatch(setStep1Data(stepData));
             dispatch(nextStep());
             //navigate(`/step${++currentStep}`)
         }

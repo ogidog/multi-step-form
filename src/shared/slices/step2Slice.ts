@@ -8,8 +8,8 @@ export interface IStep2State {
 }
 
 const initialState: IStep2State = {
-    plan: "Arcade",
-    price: 9,
+    plan: "",
+    price: 0,
     billing: "Monthly",
 }
 
@@ -17,15 +17,17 @@ const step2Slice = createSlice({
     name: "step2",
     initialState: initialState,
     reducers: {
-        changePlan: (state, action: PayloadAction<IStep2State>) => {
+        changeBilling: (state, action: PayloadAction<IStep2State["billing"]>) => {
+            state.billing = action.payload;
+        },
+        setData: (state, action: PayloadAction<Omit<IStep2State, "billing">>) => {
             state.plan = action.payload.plan;
             state.price = action.payload.price;
-            state.billing = action.payload.billing;
         }
     }
 });
 
 export const selectBilling = (state: RootState) => state.step2.billing;
 
-export const {changePlan} = step2Slice.actions;
+export const {setData, changeBilling} = step2Slice.actions;
 export default step2Slice.reducer;

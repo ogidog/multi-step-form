@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {NextStepButton, PrevStepButton} from "entities/index";
 import {useSelector} from "react-redux";
 import {selectCurrentStepNumber} from "shared/slices/controlSlice";
-import {TOTAL_STEPS} from "app/lib/const";
+import {TOTAL_STEPS} from "shared/lib/const";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {

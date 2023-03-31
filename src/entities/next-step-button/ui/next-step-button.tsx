@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 import {IControlSlice} from "shared/slices/controlSlice";
 import {FC} from "react";
-import {TOTAL_STEPS} from "app/lib/const";
+import {TOTAL_STEPS} from "shared/lib/const";
 
 const Button = styled.button<Props>`
   box-sizing: border-box;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {FC, useRef} from "react";
 import {InputA} from "shared/index";
-import {PHONE_CODES} from "app/lib/const";
+import {PHONE_CODES} from "shared/lib/const";
 
 export const InputPhone: FC = () => {
 

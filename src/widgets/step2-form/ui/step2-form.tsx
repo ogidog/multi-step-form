@@ -1,17 +1,17 @@
 import * as React from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentStepNumber} from "shared/slices/controlSlice";
-import {IStep2State, selectBilling} from "shared/slices/step2Slice";
+import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
+import {IStep2State, selectBilling, setData as setStep2Data} from "shared/slices/step2Slice";
 import {RootState} from "shared/store/store";
 import {FC, FormEvent, FormEventHandler} from "react";
-import {PlanOption} from "entities/index";
-import {PLANS, PRICE_MONTHLY, PRICE_YEARLY} from "app/lib/const";
+import {BillingToggle, PlanOption} from "entities/index";
+import {PLANS, PRICE} from "shared/lib/const";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
     display: grid;
-    grid-template-rows: 50px 70px repeat(3, 90px) 1fr;
+    grid-template-rows: 50px 70px repeat(3, 90px) 50px 1fr;
 
     box-sizing: border-box;
     border-radius: 10px;
@@ -40,8 +40,10 @@ const Hint = styled.div`
   font-weight: 400;
   color: var(--cool-gray);
   font-size: var(--font-medium);
-  
+
 `;
+
+type IFormData = Omit<IStep2State, "billing">
 
 export const Step2Form: FC = () => {
 
@@ -52,17 +54,21 @@ export const Step2Form: FC = () => {
 
     const options = () => {
         return PLANS.map((plan, index) => {
-            if (billing === "Monthly") {
-                return <PlanOption key={index} plan={plan} price={PRICE_MONTHLY[index]} billing={billing}/>
-            }
-            if (billing === "Yearly") {
-                return <PlanOption key={index} plan={plan} price={PRICE_YEARLY[index]} billing={billing}/>
-            }
+            return <PlanOption key={index} plan={plan} price={PRICE[billing][plan]} billing={billing}/>
         });
     }
 
     const submitHandler: FormEventHandler = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
+        const stepForm = document.forms.namedItem(`step${currentStep}`);
+        if (stepForm) {
+            const plan = (new FormData(stepForm)).get("plan")
+            if (plan) {
+                dispatch(setStep2Data({"plan": plan.toString(), "price": PRICE[billing][plan.toString()]}))
+                dispatch(nextStep());
+            }
+        }
     }
 
     return (
@@ -71,6 +77,7 @@ export const Step2Form: FC = () => {
                 <Title>Select your plan</Title>
                 <Hint>You have the option of monthly or yearly billing.</Hint>
                 {options()}
+                <BillingToggle/>
             </StyledContainer>
         </form>
     );

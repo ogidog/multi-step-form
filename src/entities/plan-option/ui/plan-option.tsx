@@ -13,23 +13,28 @@ const Label = styled.label`
 
   width: 100%;
   height: 80px;
-  
+
   box-sizing: border-box;
   padding: 0px 15px 0px 15px;
-  
+
   border: 1px solid var(--light-gray);
   border-radius: 7px;
-  
+
   cursor: pointer;
-  
-  &:has( + input:checked){
+
+  &:has( + input:checked) {
     border: 1px solid var(--marine-blue);
     background-color: var(--magnolia);
   }
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 
 const Input = styled.input`
+  outline: none;
   display: none;
 `
 
@@ -55,20 +60,19 @@ const Price = styled.div`
 
 type Props = IStep2State;
 
-
 export const PlanOption = (props: Props) => {
     const {plan, price, billing} = props;
+    const payment = `${price}/${billing === "Monthly" ? "mo" : "yr"}`;
 
     return (
         <>
             <Label htmlFor={`plan${plan}`}>
                 <Icon src={require(`../assets/icon-${plan.toLowerCase()}.svg`)}/>
                 <Plan>{plan}</Plan>
-                <Price>{price}/{billing === "Monthly" ? "mo" : "yr"}</Price>
+                <Price>{payment}</Price>
             </Label>
-            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan}/>
+            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan} required={true}/>
         </>
 
-    )
-        ;
+    );
 };
