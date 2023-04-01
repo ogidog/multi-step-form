@@ -5,7 +5,7 @@ import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {selectBilling, selectPlan, setData as setStep2Data} from "shared/slices/step2Slice";
 import {FC, FormEvent, FormEventHandler, useEffect} from "react";
 import {BillingToggle, PlanOption} from "entities/index";
-import {PLANS, PRICE} from "shared/lib/const";
+import {PLANS, PLAN_PRICE} from "shared/lib/const";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -52,7 +52,8 @@ export const Step2Form: FC = () => {
     const options = () => {
         return PLANS.map((_plan, index) => {
             const checked = plan === _plan ? true : false;
-            return <PlanOption key={index} plan={_plan} price={PRICE[billing][_plan]} billing={billing} checked={checked}/>
+            const payment = `${PLAN_PRICE[billing][_plan]}/${billing === "Monthly" ? "mo" : "yr"}`;
+            return <PlanOption key={index} plan={_plan} payment={payment} billing={billing} checked={checked}/>
         });
     }
 
@@ -63,7 +64,7 @@ export const Step2Form: FC = () => {
         if (stepFormElem) {
             const plan = (new FormData(stepFormElem)).get("plan")
             if (plan) {
-                dispatch(setStep2Data({"plan": plan.toString(), "price": PRICE[billing][plan.toString()]}))
+                dispatch(setStep2Data({"plan": plan.toString(), "price": PLAN_PRICE[billing][plan.toString()]}))
                 dispatch(nextStep());
             }
         }

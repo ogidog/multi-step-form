@@ -3,11 +3,10 @@ import {IStep2State} from "shared/slices/step2Slice";
 import styled from "styled-components";
 import {DISCOUNT} from "shared/lib/const";
 
-
 const Label = styled.label<{ billing?: IStep2State["billing"] }>`
   display: grid;
   grid-template-columns: 40px 1fr;
-  grid-template-areas: ${props => props.billing === "Monthly" ? '"icon plan" "icon price"' : '"icon plan" "icon price" "empty discount"'};
+  grid-template-areas: ${props => props.billing === "Monthly" ? '"icon plan" "icon payment"' : '"icon plan" "icon payment" "empty discount"'};
   grid-row-gap: 5px;
   grid-column-gap: 20px;
 
@@ -56,8 +55,8 @@ const Plan = styled.div`
   align-self: end;
 `
 
-const Price = styled.div`
-  grid-area: price;
+const Payment = styled.div`
+  grid-area: payment;
   font-weight: 500;
   color: var(--light-gray);
 `
@@ -70,21 +69,25 @@ const Discount = styled.div`
 
 `;
 
-type Props = { checked?: boolean } & IStep2State;
+type Props = {
+    plan: IStep2State["plan"],
+    payment: string,
+    billing: IStep2State["billing"],
+    checked?: boolean
+};
 
 export const PlanOption = (props: Props) => {
-    const {plan, price, billing, checked = false} = props;
-    const payment = `${price}/${billing === "Monthly" ? "mo" : "yr"}`;
+    const {plan, payment, billing, checked = false} = props;
 
     return (
         <>
             <Label htmlFor={`plan${plan}`} billing={billing}>
                 <Icon src={require(`../assets/icon-${plan.toLowerCase()}.svg`)}/>
                 <Plan>{plan}</Plan>
-                <Price>{payment}</Price>
+                <Payment>{payment}</Payment>
                 <Discount id={"discount"}>{DISCOUNT}</Discount>
             </Label>
-            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan} defaultChecked={checked} />
+            <Input id={`plan${plan}`} name={`plan`} type={"radio"} value={plan} defaultChecked={checked}/>
         </>
 
     );

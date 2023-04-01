@@ -566,8 +566,16 @@ export const PHONE_CODES: { [key: string]: string } = {
 
 export const TOTAL_STEPS = 4;
 export const PLANS = ["Arcade", "Advanced", "Pro"];
-export const PRICE: { [key in IStep2State["billing"]]: { [key: string]: number } } = {
+export const PLAN_PRICE: { [key in IStep2State["billing"]]: { [key: string]: number } } = {
     "Monthly": {"Arcade": 9, "Advanced": 12, "Pro": 15},
     "Yearly": {"Arcade": 90, "Advanced": 120, "Pro": 150}
 };
+
+export const ADD_ONS: string[] = ["Online service", "Large storage", "Customizable profile"];
+export const ADD_ON_DESCRIPTION: string[] = ["Access to multiplayer games", "Extra 1TB of cloud save", "Custom theme on your profile"];
+export const ADD_ON_PRICE: { [key in IStep2State["billing"]]: { [key: string]: number } } = {
+    "Monthly": {"Online service": 1, "Large storage": 2, "Customizable profile": 2},
+    "Yearly": {"Online service": 10, "Large storage": 20, "Customizable profile": 20}
+};
+
 export const DISCOUNT = "2 months free";

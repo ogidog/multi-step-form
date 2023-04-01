@@ -1,13 +1,18 @@
 import * as React from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {FC, FormEvent, FormEventHandler} from "react";
 import styled from "styled-components";
+import {AddOnOption} from "entities/index";
+import {ADD_ONS, ADD_ON_DESCRIPTION, ADD_ON_PRICE} from "shared/lib/const";
+import {selectAddOns, setData as setStep3Data} from "shared/slices/step3Slice";
+import {selectBilling} from "shared/slices/step2Slice";
+import {Form} from "react-router-dom";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
     display: grid;
-    grid-template-rows: 50px 60px 1fr;
+    grid-template-rows: 50px 60px repeat(3, 80px) 1fr;
 
     box-sizing: border-box;
     border-radius: 10px;
@@ -39,15 +44,32 @@ const Hint = styled.div`
 
 `;
 
-export const Step3Form:FC = () => {
-    let currentStep = useSelector(selectCurrentStepNumber);
+export const Step3Form: FC = () => {
+    const currentStep = useSelector(selectCurrentStepNumber);
+    const billing = useSelector(selectBilling);
+    const addOns = useSelector(selectAddOns);
+    const dispatch = useDispatch();
+
+    const options = () => {
+        return ADD_ONS.map((_addOn, index) => {
+            const checked = addOns.includes(_addOn) ? true : false;
+            const payment = `+$${ADD_ON_PRICE[billing][_addOn]}/${billing === "Monthly" ? "mo" : "yr"}`;
+            const addOnDesc = ADD_ON_DESCRIPTION[index];
+            return <AddOnOption key={index} addOn={_addOn} payment={payment} checked={checked} addOnDesc={addOnDesc}/>
+        });
+    }
 
     const submitHandler: FormEventHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const stepFormElem = document.forms.namedItem(`step${currentStep}`);
         if (stepFormElem) {
-
+            const formData = new FormData(stepFormElem);
+            const addOns = Array.from(formData.values()) as string[];
+            const prices = addOns.map(addOn => {
+                return ADD_ON_PRICE[billing][addOn];
+            });
+            dispatch(setStep3Data({addOns: addOns, prices: prices}))
         }
     }
 
@@ -56,6 +78,7 @@ export const Step3Form:FC = () => {
             <StyledContainer>
                 <Title>Pick add-ons</Title>
                 <Hint>Add-ons help enhance your gaming experience.</Hint>
+                {options()}
             </StyledContainer>
         </form>
     );
