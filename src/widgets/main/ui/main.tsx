@@ -6,6 +6,7 @@ import {selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {Step1Form} from "widgets/step1-form/ui/step1-form";
 import {Step2Form} from "widgets/step2-form/ui/step2-form";
 import {Step3Form} from "widgets/step3-form/ui/step3-form";
+import {Step4Form} from "widgets/step4-form/ui/step4-form";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -30,6 +31,8 @@ export const Main = () => {
                 return <Step2Form/>
             case 3:
                 return <Step3Form/>
+            case 4:
+                return <Step4Form/>
             default:
                 return <Step1Form/>
         }

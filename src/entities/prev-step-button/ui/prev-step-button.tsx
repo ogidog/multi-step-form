@@ -1,17 +1,13 @@
 import * as React from 'react';
 import styled from "styled-components";
-import {IControlSlice, prevStep} from "shared/slices/controlSlice";
-import {FC} from "react";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {prevStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
+import {useDispatch, useSelector} from "react-redux";
 
-const Button = styled.button<Props>`
+const Button = styled.button<{ currentStepNumber:number }>`
   box-sizing: border-box;
 
-  width: fit-content;
+  width: 110px;
   height: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
 
   border-width: 0px;
 
@@ -20,21 +16,21 @@ const Button = styled.button<Props>`
   color: var(--cool-gray);
   font-size: var(--font-normal);
   font-weight: 700;
-  visibility: ${props => props.currentStepNumber === 1 ? 'hidden' : 'visible'};
+  display: ${props => props.currentStepNumber === 1 || props.currentStepNumber > 4 ? 'none' : 'block'};
+
+  grid-area: left;
+  justify-self: start;
 `
 
-type Props = Pick<IControlSlice, 'currentStepNumber'>
-
-export const PrevStepButton: FC<Props> = (props) => {
+export const PrevStepButton = () => {
+    const currentStepNumber = useSelector(selectCurrentStepNumber);
     const dispatch = useDispatch();
-    //const navigate = useNavigate();
 
     const clickHandler = () => {
         dispatch(prevStep());
-        //navigate(`/step${props.currentStepNumber - 1}`)
     }
 
     return (
-        <Button currentStepNumber={props.currentStepNumber} onClick={clickHandler}>Go Back</Button>
+        <Button currentStepNumber={currentStepNumber} onClick={clickHandler}>Go Back</Button>
     );
 };

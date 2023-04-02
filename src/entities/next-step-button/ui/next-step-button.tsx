@@ -1,13 +1,14 @@
 import * as React from 'react';
 import styled from "styled-components";
-import {IControlSlice} from "shared/slices/controlSlice";
+import {IControlSlice, selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {FC} from "react";
 import {TOTAL_STEPS} from "shared/lib/const";
+import {useSelector} from "react-redux";
 
-const Button = styled.button<Props>`
+const Button = styled.button<{ currentStepNumber: number }>`
   box-sizing: border-box;
 
-  width: fit-content;
+  width: 110px;
   height: 40px;
   padding-left: 15px;
   padding-right: 15px;
@@ -21,15 +22,18 @@ const Button = styled.button<Props>`
   font-size: var(--font-normal);
   font-weight: 400;
 
-  visibility: ${props => props.totalSteps === props.currentStepNumber ? 'hidden' : 'visible'};
+  display: ${props => props.currentStepNumber >= 4 ? 'none' : 'block'};
+  
+  grid-area: right;
+  justify-self: end;
+  
 `
 
-type Props = {totalSteps: number} & Pick<IControlSlice, "currentStepNumber">;
+export const NextStepButton: FC = () => {
+    const currentStepNumber = useSelector(selectCurrentStepNumber);
 
-
-export const NextStepButton: FC<Props> = (props) => {
     return (
-        <Button totalSteps={TOTAL_STEPS} currentStepNumber={props.currentStepNumber} type={"submit"}
-                form={`step${props.currentStepNumber}`}>Next Step</Button>
+        <Button currentStepNumber={currentStepNumber} type={"submit"}
+                form={`step${currentStepNumber}`}>Next Step</Button>
     );
 };

@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../store/store";
 
 export interface IControlSlice {
@@ -6,7 +6,7 @@ export interface IControlSlice {
 }
 
 const initialState: IControlSlice = {
-    currentStepNumber: 3,
+    currentStepNumber: 4,
 }
 
 const controlSlice = createSlice({
@@ -18,11 +18,14 @@ const controlSlice = createSlice({
         },
         prevStep: (state) => {
             state.currentStepNumber -= 1;
+        },
+        setStep: (state, action: PayloadAction<IControlSlice["currentStepNumber"]>) => {
+            state.currentStepNumber = action.payload
         }
     }
 });
 
 export const selectCurrentStepNumber = (state: RootState) => state.control.currentStepNumber;
 
-export const {nextStep, prevStep} = controlSlice.actions;
+export const {nextStep, prevStep, setStep} = controlSlice.actions;
 export default controlSlice.reducer

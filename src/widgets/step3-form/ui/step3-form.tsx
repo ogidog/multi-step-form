@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentStepNumber} from "shared/slices/controlSlice";
+import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {FC, FormEvent, FormEventHandler} from "react";
 import styled from "styled-components";
 import {AddOnOption} from "entities/index";
@@ -70,6 +70,7 @@ export const Step3Form: FC = () => {
                 return ADD_ON_PRICE[billing][addOn];
             });
             dispatch(setStep3Data({addOns: addOns, prices: prices}))
+            dispatch(nextStep())
         }
     }
 

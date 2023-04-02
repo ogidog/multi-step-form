@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {FC} from "react";
 import styled from "styled-components";
-import {NextStepButton, PrevStepButton} from "entities/index";
-import {useSelector} from "react-redux";
-import {selectCurrentStepNumber} from "shared/slices/controlSlice";
-import {TOTAL_STEPS} from "shared/lib/const";
+import {ConfirmButton, NextStepButton, PrevStepButton} from "entities/index";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -12,8 +8,10 @@ const StyledContainer = styled.div`
     
     background-color: var(--white);
     
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "left right";
+    grid-auto-columns: 4px;
     align-items: center;
     
     height: 100%;
@@ -26,13 +24,13 @@ const StyledContainer = styled.div`
   }
 
 `
-export const Footer: FC = () => {
-    const currentStepNumber = useSelector(selectCurrentStepNumber);
+export const Footer = () => {
 
     return (
         <StyledContainer>
-            <PrevStepButton currentStepNumber={currentStepNumber}/>
-            <NextStepButton totalSteps={TOTAL_STEPS} currentStepNumber={currentStepNumber}/>
+            <PrevStepButton />
+            <NextStepButton/>
+            <ConfirmButton/>
         </StyledContainer>
     );
 };
