@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../store/store";
+import {AddOnType, PriceType} from "../@types";
 
 export interface IStep3State {
-    addOns: string[],
-    prices: number[]
+    addOns: AddOnType[],
+    prices: PriceType[]
 }
 
 const initState: IStep3State = {

@@ -1,10 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../store/store";
+import {BillingType, PlanType, PriceType} from "../@types";
 
 export interface IStep2State {
-    plan: string,
-    price: number,
-    billing: "Monthly" | "Yearly",
+    plan: PlanType,
+    price: PriceType,
+    billing: BillingType,
 }
 
 const initialState: IStep2State = {
@@ -17,7 +18,7 @@ const step2Slice = createSlice({
     name: "step2",
     initialState: initialState,
     reducers: {
-        changeBilling: (state, action: PayloadAction<IStep2State["billing"]>) => {
+        changeBilling: (state, action: PayloadAction<BillingType>) => {
             state.billing = action.payload;
         },
         setData: (state, action: PayloadAction<Omit<IStep2State, "billing">>) => {
@@ -29,6 +30,7 @@ const step2Slice = createSlice({
 
 export const selectBilling = (state: RootState) => state.step2.billing;
 export const selectPlan = (state: RootState) => state.step2.plan;
+export const selectPrice = (state: RootState) => state.step2.price;
 
 export const {setData, changeBilling} = step2Slice.actions;
 export default step2Slice.reducer;

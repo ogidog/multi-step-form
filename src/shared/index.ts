@@ -1,5 +1,5 @@
 import {InputA} from "./ui/input/input-a";
 import {Toggle} from "./ui/toggle/ui/toggle";
-// import {router} from "./router/router";
+import {shortBillingName} from "./lib/utils";
 
-export {InputA, Toggle};
+export {InputA, Toggle, shortBillingName};

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {IStep2State} from "shared/slices/step2Slice";
 import styled from "styled-components";
 import {DISCOUNT} from "shared/lib/const";
+import {BillingType, PaymentType, PlanType} from "shared/@types";
 
-const Label = styled.label<{ billing?: IStep2State["billing"] }>`
+const Label = styled.label<{ billing: BillingType }>`
   display: grid;
   grid-template-columns: 40px 1fr;
   grid-template-areas: ${props => props.billing === "Monthly" ? '"icon plan" "icon payment"' : '"icon plan" "icon payment" "empty discount"'};
@@ -70,9 +70,9 @@ const Discount = styled.div`
 `;
 
 type Props = {
-    plan: IStep2State["plan"],
-    payment: string,
-    billing: IStep2State["billing"],
+    plan: PlanType,
+    payment: PaymentType,
+    billing: BillingType,
     checked?: boolean
 };
 

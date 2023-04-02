@@ -4,6 +4,7 @@ import {FC} from "react";
 import {Toggle} from "shared/index";
 import {useDispatch, useSelector} from "react-redux";
 import {changeBilling, selectBilling} from "shared/slices/step2Slice";
+import {BillingType} from "../../../shared/@types";
 
 const StyledContainer = styled.div`
   display: grid;
@@ -41,12 +42,12 @@ const YearlyOption = styled.div`
 `;
 
 
-export const BillingToggle: FC = () => {
+export const BillingToggle = () => {
     const dispatch = useDispatch();
-    const checked = useSelector(selectBilling) === "Yearly" ? true : false;
+    const checked: boolean = useSelector(selectBilling) === "Yearly" ? true : false;
 
     const billingChangeHandler = (checked: boolean) => {
-        const billing = checked ? "Yearly" : "Monthly";
+        const billing: BillingType = checked ? "Yearly" : "Monthly";
         dispatch(changeBilling(billing))
     }
 

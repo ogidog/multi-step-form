@@ -1,8 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../store/store";
+import {StepNumberType} from "../@types";
 
 export interface IControlSlice {
-    currentStepNumber: number,
+    currentStepNumber: StepNumberType,
 }
 
 const initialState: IControlSlice = {
@@ -19,7 +20,7 @@ const controlSlice = createSlice({
         prevStep: (state) => {
             state.currentStepNumber -= 1;
         },
-        setStep: (state, action: PayloadAction<IControlSlice["currentStepNumber"]>) => {
+        setStep: (state, action: PayloadAction<StepNumberType>) => {
             state.currentStepNumber = action.payload
         }
     }

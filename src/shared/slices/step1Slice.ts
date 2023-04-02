@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {EmailType, NameType, PhoneType} from "../@types";
 
 export interface IStep1State {
-    name: string,
-    email: string,
-    phone: string,
+    name: NameType,
+    email: EmailType,
+    phone: PhoneType,
 }
 
 const initialState: IStep1State = {

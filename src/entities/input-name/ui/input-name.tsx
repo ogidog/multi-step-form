@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {FC} from "react";
 import {InputA} from "shared/index";
 
-export const InputName: FC = () => {
+export const InputName = () => {
     return (
         <InputA
             id={"personnelName"}

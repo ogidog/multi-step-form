@@ -2,8 +2,9 @@ import * as React from 'react';
 import styled from "styled-components";
 import {prevStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {StepNumberType} from "shared/@types";
 
-const Button = styled.button<{ currentStepNumber:number }>`
+const Button = styled.button<{ currentStepNumber: StepNumberType }>`
   box-sizing: border-box;
 
   width: 110px;

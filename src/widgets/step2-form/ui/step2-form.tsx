@@ -6,6 +6,7 @@ import {selectBilling, selectPlan, setData as setStep2Data} from "shared/slices/
 import {FC, FormEvent, FormEventHandler, useEffect} from "react";
 import {BillingToggle, PlanOption} from "entities/index";
 import {PLANS, PLAN_PRICE} from "shared/lib/const";
+import {shortBillingName} from "shared/index";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -52,7 +53,7 @@ export const Step2Form: FC = () => {
     const options = () => {
         return PLANS.map((_plan, index) => {
             const checked = plan === _plan ? true : false;
-            const payment = `${PLAN_PRICE[billing][_plan]}/${billing === "Monthly" ? "mo" : "yr"}`;
+            const payment = `$${PLAN_PRICE[billing][_plan]}/${shortBillingName(billing)}`;
             return <PlanOption key={index} plan={_plan} payment={payment} billing={billing} checked={checked}/>
         });
     }

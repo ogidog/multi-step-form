@@ -7,7 +7,7 @@ import {AddOnOption} from "entities/index";
 import {ADD_ONS, ADD_ON_DESCRIPTION, ADD_ON_PRICE} from "shared/lib/const";
 import {selectAddOns, setData as setStep3Data} from "shared/slices/step3Slice";
 import {selectBilling} from "shared/slices/step2Slice";
-import {Form} from "react-router-dom";
+import {shortBillingName} from "shared/index";
 
 const StyledContainer = styled.div`
   @media (max-width: 1024px) {
@@ -53,7 +53,7 @@ export const Step3Form: FC = () => {
     const options = () => {
         return ADD_ONS.map((_addOn, index) => {
             const checked = addOns.includes(_addOn) ? true : false;
-            const payment = `+$${ADD_ON_PRICE[billing][_addOn]}/${billing === "Monthly" ? "mo" : "yr"}`;
+            const payment = `+$${ADD_ON_PRICE[billing][_addOn]}/${shortBillingName(billing)}`;
             const addOnDesc = ADD_ON_DESCRIPTION[index];
             return <AddOnOption key={index} addOn={_addOn} payment={payment} checked={checked} addOnDesc={addOnDesc}/>
         });

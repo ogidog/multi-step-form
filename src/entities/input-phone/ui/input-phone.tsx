@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {FC, useRef} from "react";
+import {useRef} from "react";
 import {InputA} from "shared/index";
 import {PHONE_CODES} from "shared/lib/const";
 
-export const InputPhone: FC = () => {
+export const InputPhone = () => {
 
     const inputRef = useRef<HTMLInputElement>(null)
 

@@ -1,9 +1,8 @@
 
 import * as React from 'react';
-import {FC} from "react";
 import {InputA} from "shared/index";
 
-export const InputEmail:FC = () => {
+export const InputEmail = () => {
     return (
         <InputA
             id={"personnelEmail"}

@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import bgSidebarMobileImg from "./assets/bg-sidebar-mobile.svg";
 import bgSidebarDesktopImg from "./assets/bg-sidebar-desktop.svg";
-import {FC} from "react";
 import {StepNumber} from "entities/index";
 
 const StyledContainer = styled.div`
@@ -37,7 +36,7 @@ const StyledContainer = styled.div`
   
 `
 
-export const Sidebar:FC = () => {
+export const Sidebar = () => {
     return (
         <StyledContainer>
             <StepNumber stepNumber={1} stepDescription={"your info"}/>

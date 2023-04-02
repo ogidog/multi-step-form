@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {FC} from "react";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {selectCurrentStepNumber} from "shared/slices/controlSlice";
+import {StepNumberType} from "shared/@types";
 
 const StyledContainer = styled.div`
   display: grid;
@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
   align-items: center;
 `
 
-const Number = styled.div<NumberDivProps & Pick<Props, "stepNumber">>`
+const Number = styled.div<{ stepNumber: StepNumberType, currentStep: StepNumberType }>`
   box-sizing: border-box;
   border: 2px solid var(--white);
   border-radius: 50%;
@@ -28,9 +28,9 @@ const Number = styled.div<NumberDivProps & Pick<Props, "stepNumber">>`
 
   grid-row: 1 / 3;
   grid-column: 1 / 2;
-  
+
   background-color: ${(props) => props.stepNumber === props.currentStep ? `var(--light-blue)` : `transparent`};
-  
+
 `
 
 const Name = styled.div`
@@ -64,11 +64,8 @@ type Props = {
     stepDescription: string;
 };
 
-type NumberDivProps = {
-    currentStep: number
-}
 
-export const StepNumber: FC<Props> = (props) => {
+export const StepNumber = (props: Props) => {
 
     let currentStep = useSelector(selectCurrentStepNumber);
     const {stepNumber, stepDescription} = props;

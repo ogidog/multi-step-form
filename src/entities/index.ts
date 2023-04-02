@@ -8,6 +8,7 @@ import {ConfirmButton} from "./confirm-button/ui/confirm-button";
 import {PlanOption} from "./plan-option/ui/plan-option";
 import {BillingToggle} from "./billing-toggle/ui/billing-toggle";
 import {AddOnOption} from "./add-on-option/ui/add-on-option";
+import {SummaryPlan} from "./summary-plan/ui/summary-plan";
 
 export {
     StepNumber,
@@ -19,5 +20,6 @@ export {
     ConfirmButton,
     PlanOption,
     BillingToggle,
-    AddOnOption
+    AddOnOption,
+    SummaryPlan
 };

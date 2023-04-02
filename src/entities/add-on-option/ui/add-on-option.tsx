@@ -3,6 +3,7 @@ import {IStep3State} from "shared/slices/step3Slice";
 import styled from "styled-components";
 
 import iconCheckMark from "../assets/icon-checkmark.svg";
+import {AddOnDescType, AddOnType, PaymentType} from "../../../shared/@types";
 
 const Label = styled.label`
   display: grid;
@@ -75,7 +76,7 @@ const Payment = styled.div`
   align-self: center;
 `;
 
-type Props = { addOnDesc: string, payment: string, addOn: string, checked?: boolean };
+type Props = { addOnDesc: AddOnDescType, payment: PaymentType, addOn: AddOnType, checked?: boolean };
 
 export const AddOnOption = (props: Props) => {
     const {addOn, addOnDesc, payment, checked = false} = props;
