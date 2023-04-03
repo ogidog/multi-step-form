@@ -69,7 +69,7 @@ export const Step3Form: FC = () => {
             const prices = addOns.map(addOn => {
                 return ADD_ON_PRICE[billing][addOn];
             });
-            dispatch(setStep3Data({addOns: addOns, prices: prices}))
+            dispatch(setStep3Data({addOns: addOns, addOnPrices: prices}))
             dispatch(nextStep())
         }
     }

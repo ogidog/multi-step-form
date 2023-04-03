@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {selectBilling, selectPlan, setData as setStep2Data} from "shared/slices/step2Slice";
-import {FC, FormEvent, FormEventHandler, useEffect} from "react";
+import {FC, FormEvent, FormEventHandler} from "react";
 import {BillingToggle, PlanOption} from "entities/index";
 import {PLANS, PLAN_PRICE} from "shared/lib/const";
 import {shortBillingName} from "shared/index";
@@ -65,7 +65,7 @@ export const Step2Form: FC = () => {
         if (stepFormElem) {
             const plan = (new FormData(stepFormElem)).get("plan")
             if (plan) {
-                dispatch(setStep2Data({"plan": plan.toString(), "price": PLAN_PRICE[billing][plan.toString()]}))
+                dispatch(setStep2Data({plan: plan.toString(), planPrice: PLAN_PRICE[billing][plan.toString()]}))
                 dispatch(nextStep());
             }
         }

@@ -9,6 +9,8 @@ import {PlanOption} from "./plan-option/ui/plan-option";
 import {BillingToggle} from "./billing-toggle/ui/billing-toggle";
 import {AddOnOption} from "./add-on-option/ui/add-on-option";
 import {SummaryPlan} from "./summary-plan/ui/summary-plan";
+import {AddOnSummaryItem} from "./add-on-summary-item/ui/add-on-summary-item";
+import {TotalPayment} from "./total-payment/ui/total-payment";
 
 export {
     StepNumber,
@@ -21,5 +23,7 @@ export {
     PlanOption,
     BillingToggle,
     AddOnOption,
-    SummaryPlan
+    SummaryPlan,
+    AddOnSummaryItem,
+    TotalPayment
 };

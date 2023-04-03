@@ -4,13 +4,13 @@ import {BillingType, PlanType, PriceType} from "../@types";
 
 export interface IStep2State {
     plan: PlanType,
-    price: PriceType,
+    planPrice: PriceType,
     billing: BillingType,
 }
 
 const initialState: IStep2State = {
     plan: "",
-    price: 0,
+    planPrice: 0,
     billing: "Monthly",
 }
 
@@ -23,14 +23,14 @@ const step2Slice = createSlice({
         },
         setData: (state, action: PayloadAction<Omit<IStep2State, "billing">>) => {
             state.plan = action.payload.plan;
-            state.price = action.payload.price;
+            state.planPrice = action.payload.planPrice;
         }
     }
 });
 
 export const selectBilling = (state: RootState) => state.step2.billing;
 export const selectPlan = (state: RootState) => state.step2.plan;
-export const selectPrice = (state: RootState) => state.step2.price;
+export const selectPlanPrice = (state: RootState) => state.step2.planPrice;
 
 export const {setData, changeBilling} = step2Slice.actions;
 export default step2Slice.reducer;

@@ -4,12 +4,12 @@ import {AddOnType, PriceType} from "../@types";
 
 export interface IStep3State {
     addOns: AddOnType[],
-    prices: PriceType[]
+    addOnPrices: PriceType[]
 }
 
 const initState: IStep3State = {
     addOns: [],
-    prices: []
+    addOnPrices: []
 };
 
 const step3Slice = createSlice({
@@ -18,13 +18,15 @@ const step3Slice = createSlice({
     reducers: {
         setData: (state, action: PayloadAction<IStep3State>) => {
             state.addOns = action.payload.addOns;
-            state.prices = action.payload.prices;
+            state.addOnPrices = action.payload.addOnPrices;
         }
     }
 });
 
 
 export const selectAddOns = (state: RootState) => state.step3.addOns;
+export const selectAddOnPrices = (state: RootState) => state.step3.addOnPrices;
+
 export const {setData} = step3Slice.actions;
 
 export default step3Slice.reducer;

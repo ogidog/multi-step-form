@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {selectBilling, selectPlan, selectPrice} from "../../../shared/slices/step2Slice";
-import {setStep} from "../../../shared/slices/controlSlice";
-import {shortBillingName} from "../../../shared";
+import {selectBilling, selectPlan, selectPlanPrice} from "shared/slices/step2Slice";
+import {setStep} from "shared/slices/controlSlice";
+import {shortBillingName} from "shared";
 
 const StyledContainer = styled.div`
   display: grid;
@@ -52,10 +52,10 @@ const Line = styled.hr`
 export const SummaryPlan = () => {
     const plan = useSelector(selectPlan);
     const dispatch = useDispatch();
-    const price = useSelector(selectPrice);
+    const planPrice = useSelector(selectPlanPrice);
     const billing = useSelector(selectBilling);
 
-    const payment = `$${price}/${shortBillingName(billing)}`
+    const payment = `$${planPrice}/${shortBillingName(billing)}`
     const changeClickHandler = () => {
         dispatch(setStep(2))
     }
