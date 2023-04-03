@@ -13,7 +13,7 @@ const Button = styled.button<{ currentStepNumber: StepNumberType }>`
   border-width: 0px;
   border-radius: 3px;
 
-  background-color: var(--marine-blue);
+  background-color: var(--purplish-blue);
 
   color: var(--white);
   font-size: var(--font-normal);

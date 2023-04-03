@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {IStep3State} from "shared/slices/step3Slice";
 import styled from "styled-components";
 
 import iconCheckMark from "../assets/icon-checkmark.svg";
