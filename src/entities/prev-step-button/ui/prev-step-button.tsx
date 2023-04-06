@@ -21,6 +21,12 @@ const Button = styled.button<{ currentStepNumber: StepNumberType }>`
 
   grid-area: left;
   justify-self: start;
+
+  cursor: pointer;
+  
+  &:hover {
+    color: var(--marine-blue);
+  }
 `
 
 export const PrevStepButton = () => {

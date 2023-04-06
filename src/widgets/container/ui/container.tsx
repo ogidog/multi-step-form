@@ -3,35 +3,34 @@ import {FC} from "react";
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     width: 100%;
     height: 100%;
 
     display: grid;
-    grid-template-rows: 20% 1fr 10%;
-    grid-template-columns: 100%;
+    grid-template-rows: 172px calc(100% - 90px - 172px) 90px;
   }
-  
-  @media (min-width: 1025px) {
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
     display: grid;
     grid-gap: 10px;
     grid-template-areas: 
             "side-bar main"
             "side-bar footer";
-    grid-template-columns: 300px 1fr;
-    grid-template-rows: 90% 1fr;
-
-    box-sizing: border-box;
-
-    width: 100%;
-    height: 100%;
+    grid-template-columns: fit-content(5px) 1fr;
+    grid-template-rows: fit-content(5px) 1fr;
     
-    max-width: 1440px;
-    max-height: 1080px;
+    width: 960px;
+    max-height: 646px;
 
     border-radius: 15px;
     background-color: var(--white);
+
     padding: 20px;
   }
 `;

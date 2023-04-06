@@ -4,21 +4,12 @@ import styled from "styled-components";
 import {Container, Footer, Main, Sidebar} from "widgets/index";
 
 const Page = styled.div`
-
-  @media (min-width: 1025px) {
-    padding: 100px;
-  }
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  box-sizing: border-box;
-
-  height: 100vh;
-
   min-width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  
+  @media (max-width: 1023px) {
+    min-height: 646px;
+  }
 
   background-color: var(--magnolia);
 `;

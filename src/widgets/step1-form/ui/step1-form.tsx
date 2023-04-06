@@ -1,46 +1,38 @@
 import * as React from 'react';
 import {FC, FormEvent, FormEventHandler, useEffect} from "react";
 import styled from "styled-components";
-import {InputEmail, InputName, InputPhone} from "entities/index";
+import {FormCaption, InputEmail, InputName, InputPhone} from "entities/index";
 import {IStep1State, setData as setStep1Data} from "shared/slices/step1Slice";
 import {useDispatch, useSelector} from "react-redux";
 import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
-import {useNavigate} from "react-router-dom";
 import {RootState} from "shared/store/store";
 
 const StyledContainer = styled.div`
-  @media (max-width: 1024px) {
-    display: grid;
-    grid-template-rows: 50px 60px repeat(3, 80px) 1fr;
+  
+  display: grid;
+  grid-template-rows: repeat(2, fit-content(5px));
+  grid-row-gap: 25px;
+  justify-content: center;
+  align-items: center;
 
-    box-sizing: border-box;
-    border-radius: 10px;
-    background-color: var(--white);
-
+  box-sizing: border-box;
+  
+  border-radius: 10px;
+  
+  background-color: var(--white);
+  
+  @media (max-width: 1023px) {
     position: relative;
     top: -25px;
 
-    width: 100%;
-    height: 100%;
-
     padding: 30px 15px 30px 15px;
   }
-  @media (min-width: 1025px) {
-
-  }
 `;
 
-const Title = styled.div`
-  font-weight: 700;
-  color: var(--marine-blue);
-  font-size: var(--font-large);
-`;
-
-const Hint = styled.div`
-  font-weight: 400;
-  color: var(--cool-gray);
-  font-size: var(--font-medium);
-  height: 50px;
+const FormContent = styled.div`
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 10px;
 `;
 
 export const Step1Form: FC = () => {
@@ -48,7 +40,6 @@ export const Step1Form: FC = () => {
     const currentStep = useSelector(selectCurrentStepNumber);
     const step1State: IStep1State = useSelector((state: RootState) => state.step1)
     const dispatch = useDispatch()
-    //const navigate = useNavigate();
 
     useEffect(() => {
         const stepForm = document.forms.namedItem(`step${currentStep}`);
@@ -70,18 +61,19 @@ export const Step1Form: FC = () => {
             }
             dispatch(setStep1Data(stepData));
             dispatch(nextStep());
-            //navigate(`/step${++currentStep}`)
         }
     }
 
     return (
         <form id={`step${currentStep}`} name={`step${currentStep}`} onSubmit={submitHandler} autoComplete={"off"}>
             <StyledContainer>
-                <Title>Personnel info</Title>
-                <Hint>Please provide your name, email address, and phone number.</Hint>
-                <InputName/>
-                <InputEmail/>
-                <InputPhone/>
+                <FormCaption title={"Personnel info"}
+                             hint={"Please provide your name, email address, and phone number."}/>
+                <FormContent>
+                    <InputName/>
+                    <InputEmail/>
+                    <InputPhone/>
+                </FormContent>
             </StyledContainer>
         </form>
     );

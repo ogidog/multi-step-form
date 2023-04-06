@@ -11,6 +11,7 @@ import {AddOnOption} from "./add-on-option/ui/add-on-option";
 import {SummaryPlan} from "./summary-plan/ui/summary-plan";
 import {AddOnSummaryItem} from "./add-on-summary-item/ui/add-on-summary-item";
 import {TotalPayment} from "./total-payment/ui/total-payment";
+import {FormCaption} from "./form-caption/ui/form-caption";
 
 export {
     StepNumber,
@@ -25,5 +26,6 @@ export {
     AddOnOption,
     SummaryPlan,
     AddOnSummaryItem,
-    TotalPayment
+    TotalPayment,
+    FormCaption,
 };

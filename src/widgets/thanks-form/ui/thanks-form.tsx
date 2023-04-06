@@ -43,7 +43,12 @@ const Title = styled.div`
 `;
 
 const Appreciation = styled.div`
-    
+  font-weight: 400;
+  color: var(--cool-gray);
+  font-size: var(--font-normal);
+  white-space: break-spaces;
+  text-align: center;
+  line-height: 25px;
 `
 
 export const ThanksForm = () => {
@@ -51,7 +56,10 @@ export const ThanksForm = () => {
         <StyledContainer>
             <Img/>
             <Title>Thank you!</Title>
-            <Appreciation>Thanks for confirming your subscription!</Appreciation>
+            <Appreciation>
+                Thanks for confirming your subscription! We hope you have fun using our platform.
+                If you ever need support, please feel free to email us at support@loremgaming.com.
+            </Appreciation>
         </StyledContainer>
     );
 };

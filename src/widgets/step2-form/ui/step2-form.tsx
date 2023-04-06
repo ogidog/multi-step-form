@@ -4,44 +4,45 @@ import {useDispatch, useSelector} from "react-redux";
 import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {selectBilling, selectPlan, setData as setStep2Data} from "shared/slices/step2Slice";
 import {FC, FormEvent, FormEventHandler} from "react";
-import {BillingToggle, PlanOption} from "entities/index";
+import {BillingToggle, FormCaption, PlanOption} from "entities/index";
 import {PLANS, PLAN_PRICE} from "shared/lib/const";
 import {shortBillingName} from "shared/index";
 
 const StyledContainer = styled.div`
-  @media (max-width: 1024px) {
-    display: grid;
-    grid-template-rows: 50px 60px repeat(3, 90px) 50px 1fr;
 
-    box-sizing: border-box;
-    border-radius: 10px;
-    background-color: var(--white);
+  display: grid;
+  grid-template-rows: repeat(2, fit-content(5px));
+  grid-row-gap: 25px;
+  justify-content: center;
+  align-items: center;
 
+  box-sizing: border-box;
+
+  border-radius: 10px;
+
+  background-color: var(--white);
+
+  @media (max-width: 1023px) {
     position: relative;
     top: -25px;
 
-    width: 100%;
-    height: 100%;
-
     padding: 30px 15px 30px 15px;
   }
-  @media (min-width: 1025px) {
+`;
 
+const FormContent = styled.div`
+  display: grid;
+
+  @media (max-width: 1023px) {
+    grid-template-rows: repeat(3, 1fr);
+    grid-row-gap: 15px;
   }
-`;
 
-const Title = styled.div`
-  font-weight: 700;
-  color: var(--marine-blue);
-  font-size: var(--font-large);
-`;
-
-const Hint = styled.div`
-  font-weight: 400;
-  color: var(--cool-gray);
-  font-size: var(--font-medium);
-
-`;
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, calc(476px / 3));
+    grid-column-gap: 15px;
+  }
+`
 
 export const Step2Form: FC = () => {
 
@@ -74,9 +75,10 @@ export const Step2Form: FC = () => {
     return (
         <form id={`step${currentStep}`} name={`step${currentStep}`} onSubmit={submitHandler} autoComplete={"off"}>
             <StyledContainer>
-                <Title>Select your plan</Title>
-                <Hint>You have the option of monthly or yearly billing.</Hint>
-                {options()}
+                <FormCaption title={"Select your plan"} hint={"You have the option of monthly or yearly billing."}/>
+                <FormContent>
+                    {options()}
+                </FormContent>
                 <BillingToggle/>
             </StyledContainer>
         </form>

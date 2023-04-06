@@ -5,11 +5,13 @@ import {selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {Step1Form, Step2Form, Step3Form, Step4Form, ThanksForm} from "widgets/index";
 
 const StyledContainer = styled.div`
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     padding: 0px 20px 0px 20px;
   }
 
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
+    box-sizing: border-box;
+    padding: 50px 100px 50px 100px;
     grid-area: main
   }
 
@@ -38,7 +40,6 @@ export const Main = () => {
     return (
         <StyledContainer>
             {selectStepContent()}
-            {/*<Outlet/>*/}
         </StyledContainer>
     );
 };

@@ -18,9 +18,9 @@ const Number = styled.div<{ stepNumber: StepNumberType, currentStep: StepNumberT
   border: 2px solid var(--white);
   border-radius: 50%;
 
-  width: 50px;
-  height: 50px;
-  line-height: 48px;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
 
   text-align: center;
   font-weight: 500;
@@ -41,7 +41,7 @@ const Name = styled.div`
   grid-row: 1 / 2;
   grid-column: 2 / 3;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     display: none;
   }
 `
@@ -54,7 +54,7 @@ const Description = styled.div`
   grid-row: 2 / 3;
   grid-column: 2 / 3;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     display: none;
   }
 `

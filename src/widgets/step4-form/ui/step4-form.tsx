@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
 
     padding: 30px 15px 30px 15px;
   }
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
 
   }
 `;

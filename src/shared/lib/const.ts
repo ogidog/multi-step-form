@@ -564,7 +564,7 @@ export const PHONE_CODES: { [key: string]: string } = {
     "+221": "+221"
 };
 
-export const TOTAL_STEPS = 4;
+export const TOTAL_STEPS = 5;
 export const PLANS = ["Arcade", "Advanced", "Pro"];
 export const PLAN_PRICE: { [key in IStep2State["billing"]]: { [key: string]: number } } = {
     "Monthly": {"Arcade": 9, "Advanced": 12, "Pro": 15},

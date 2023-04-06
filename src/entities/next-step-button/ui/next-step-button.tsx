@@ -14,7 +14,7 @@ const Button = styled.button<{ currentStepNumber: StepNumberType }>`
   padding-right: 15px;
 
   border-width: 0px;
-  border-radius: 3px;
+  border-radius: 7px;
 
   background-color: var(--marine-blue);
 
@@ -26,6 +26,8 @@ const Button = styled.button<{ currentStepNumber: StepNumberType }>`
   
   grid-area: right;
   justify-self: end;
+
+  cursor: pointer;
   
 `
 
