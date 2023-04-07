@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 
 import iconCheckMark from "../assets/icon-checkmark.svg";
-import {AddOnDescType, AddOnType, PaymentType} from "../../../shared/@types";
+import {AddOnDescType, AddOnType, PaymentType} from "shared/@types";
 
 const Label = styled.label`
   display: grid;

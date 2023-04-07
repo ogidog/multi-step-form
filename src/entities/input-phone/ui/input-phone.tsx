@@ -14,8 +14,14 @@ export const InputPhone = () => {
 
         if (event.key !== "Backspace") {
 
-            if (!event.key.match(/^[0-9\+]*$/)) {
-                event.preventDefault()
+            if (!event.key.match(/^[0-9]*$/)) {
+                event.preventDefault();
+                return;
+            }
+
+            if (value.length === 0) {
+                inputRef.current!.value = "+";
+                return;
             }
 
             if (PHONE_CODES[value]) {
@@ -40,7 +46,7 @@ export const InputPhone = () => {
             name={"personnelPhone"}
             type={"tel"}
             label={"Phone Number"}
-            placeholderText={"phone number with country code"}
+            placeholderText={"phone number with country code, e.g. +7 ..."}
             errorText={"Invalid phone number."}
             onKeyDown={keyDownHandler}
             pattern={pattern}

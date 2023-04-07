@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Toggle} from "shared/index";
 import {useDispatch, useSelector} from "react-redux";
 import {changeBilling, selectBilling} from "shared/slices/step2Slice";
-import {BillingType} from "../../../shared/@types";
+import {BillingType} from "shared/@types";
 
 const StyledContainer = styled.div`
   display: grid;

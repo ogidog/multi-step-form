@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
-import {StepNumberType} from "../../../shared/@types";
+import {StepNumberType} from "shared/@types";
 
 const Button = styled.button<{ currentStepNumber: StepNumberType }>`
   box-sizing: border-box;

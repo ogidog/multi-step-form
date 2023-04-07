@@ -69,7 +69,7 @@ export const Step1Form: FC = () => {
         <form id={`step${currentStep}`} name={`step${currentStep}`} onSubmit={submitHandler} autoComplete={"off"}>
             <StyledContainer>
                 <FormCaption title={"Personnel info"}
-                             hint={"Please provide your name, email address, and phone number."}/>
+                             hint={"Please provide your name, email address and phone number."}/>
                 <InputContainer>
                     <InputName/>
                     <InputEmail/>

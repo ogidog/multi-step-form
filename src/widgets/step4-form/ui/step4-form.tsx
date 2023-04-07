@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {selectBilling, selectPlanPrice} from "shared/slices/step2Slice";
 import {selectAddOnPrices, selectAddOns} from "shared/slices/step3Slice";
 import {shortBillingName} from "shared/index";
-import {BillingType} from "../../../shared/@types";
+import {BillingType} from "shared/@types";
 
 const StyledContainer = styled.div`
   
