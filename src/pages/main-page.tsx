@@ -8,7 +8,8 @@ const Page = styled.div`
   height: 100vh;
   
   @media (max-width: 1023px) {
-    min-height: 646px;
+    min-height: 746px;
+    overflow-y: auto;
   }
 
   background-color: var(--magnolia);

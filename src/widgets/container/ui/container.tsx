@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
     height: 100%;
 
     display: grid;
-    grid-template-rows: 172px calc(100% - 90px - 172px) 90px;
+    grid-template-rows: var(--sidebar-height-mobile) calc(100% - var(--footer-height-mobile) - var(--sidebar-height-mobile)) var(--footer-height-mobile);
   }
 
   @media (min-width: 1024px) {
@@ -16,7 +16,7 @@ const StyledContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
+
     display: grid;
     grid-gap: 10px;
     grid-template-areas: 
@@ -24,7 +24,7 @@ const StyledContainer = styled.div`
             "side-bar footer";
     grid-template-columns: fit-content(5px) 1fr;
     grid-template-rows: fit-content(5px) 1fr;
-    
+
     width: 960px;
     max-height: 646px;
 

@@ -12,7 +12,7 @@ const StyledContainer = styled.div<{ currentStepNumber: StepNumberType }>`
   grid-template-areas: "left right";
   align-items: center;
 
-  background-color: var(-white);
+  background-color: var(--white);
   box-sizing: border-box;
   
   @media (max-width: 1023px) {

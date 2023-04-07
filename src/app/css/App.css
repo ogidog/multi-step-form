@@ -17,6 +17,12 @@
     --font-large: 1.5em;
     --font-largest: 1.9em;
 
+    --form-width-desktop: 476px;
+    --sidebar-width-desktop: 274px;
+    --sidebar-height-desktop: 568px;
+    --sidebar-height-mobile: 172px;
+    --footer-height-mobile: 90px
+
 }
 
 body {

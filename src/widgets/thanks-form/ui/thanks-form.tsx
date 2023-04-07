@@ -4,25 +4,26 @@ import styled from "styled-components";
 import iconThankYou from "../assets/icon-thank-you.svg";
 
 const StyledContainer = styled.div`
-  @media (max-width: 1024px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: grid;
+  grid-template-rows: repeat(2, fit-content(5px));
+  grid-row-gap: 25px;
+  align-items: center;
 
-    box-sizing: border-box;
-    border-radius: 10px;
-    background-color: var(--white);
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: var(--white);
 
+  @media (max-width: 1023px) {
     position: relative;
     top: -25px;
-
-    width: 100%;
-
     padding: 30px 15px 30px 15px;
   }
-  @media (min-width: 1025px) {
 
+  @media(min-width: 1024px){
+    width: var(--form-width-desktop);
   }
+  
+  justify-items: center;
 `;
 
 const Img = styled.div`

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from "styled-components";
-import {FC} from "react";
 import {Toggle} from "shared/index";
 import {useDispatch, useSelector} from "react-redux";
 import {changeBilling, selectBilling} from "shared/slices/step2Slice";

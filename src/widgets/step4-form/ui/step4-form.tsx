@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from "styled-components";
-import {SummaryPlan, AddOnSummaryItem, TotalPayment} from "entities/index";
+import {SummaryPlan, AddOnSummaryItem, TotalPayment, FormCaption} from "entities/index";
 import {useSelector} from "react-redux";
 import {selectBilling, selectPlanPrice} from "shared/slices/step2Slice";
 import {selectAddOnPrices, selectAddOns} from "shared/slices/step3Slice";
@@ -8,37 +8,25 @@ import {shortBillingName} from "shared/index";
 import {BillingType} from "../../../shared/@types";
 
 const StyledContainer = styled.div`
-  @media (max-width: 1024px) {
-    display: grid;
-    grid-template-rows: 50px 60px 180px 20px;
+  
+  display: grid;
+  grid-template-rows: repeat(2, fit-content(5px));
+  grid-row-gap: 25px;
+  align-items: center;
 
-    box-sizing: border-box;
-    border-radius: 10px;
-    background-color: var(--white);
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: var(--white);
 
+  @media (max-width: 1023px) {
     position: relative;
     top: -25px;
-
-    width: 100%;
-
     padding: 30px 15px 30px 15px;
   }
-  @media (min-width: 1024px) {
 
+  @media(min-width: 1024px){
+    width: var(--form-width-desktop);
   }
-`;
-
-const Title = styled.div`
-  font-weight: 700;
-  color: var(--marine-blue);
-  font-size: var(--font-large);
-`;
-
-const Hint = styled.div`
-  font-weight: 400;
-  color: var(--cool-gray);
-  font-size: var(--font-medium);
-
 `;
 
 const SummaryChoice = styled.div`
@@ -75,8 +63,7 @@ export const Step4Form = () => {
 
     return (
         <StyledContainer>
-            <Title>Finishing Up</Title>
-            <Hint>Double-check everything looks OK before confirming.</Hint>
+            <FormCaption title={"Finishing Up"} hint={"Double-check everything looks OK before confirming."}/>
             <SummaryChoice>
                 <SummaryPlan/>
                 {addOnSummary()}

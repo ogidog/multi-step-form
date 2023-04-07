@@ -3,45 +3,37 @@ import {useDispatch, useSelector} from "react-redux";
 import {nextStep, selectCurrentStepNumber} from "shared/slices/controlSlice";
 import {FC, FormEvent, FormEventHandler} from "react";
 import styled from "styled-components";
-import {AddOnOption} from "entities/index";
+import {AddOnOption, FormCaption} from "entities/index";
 import {ADD_ONS, ADD_ON_DESCRIPTION, ADD_ON_PRICE} from "shared/lib/const";
 import {selectAddOns, setData as setStep3Data} from "shared/slices/step3Slice";
 import {selectBilling} from "shared/slices/step2Slice";
 import {shortBillingName} from "shared/index";
 
 const StyledContainer = styled.div`
-  @media (max-width: 1024px) {
-    display: grid;
-    grid-template-rows: 50px 60px repeat(3, 80px) 1fr;
+  display: grid;
+  grid-template-rows: repeat(2, fit-content(5px));
+  grid-row-gap: 25px;
+  align-items: center;
 
-    box-sizing: border-box;
-    border-radius: 10px;
-    background-color: var(--white);
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: var(--white);
 
+  @media (max-width: 1023px) {
     position: relative;
     top: -25px;
-
-    width: 100%;
-    height: 100%;
-
     padding: 30px 15px 30px 15px;
   }
-  @media (min-width: 1024px) {
 
+  @media (min-width: 1024px) {
+    width: var(--form-width-desktop);
   }
 `;
 
-const Title = styled.div`
-  font-weight: 700;
-  color: var(--marine-blue);
-  font-size: var(--font-large);
-`;
-
-const Hint = styled.div`
-  font-weight: 400;
-  color: var(--cool-gray);
-  font-size: var(--font-medium);
-
+const InputContainer = styled.div`
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 10px;
 `;
 
 export const Step3Form: FC = () => {
@@ -77,9 +69,10 @@ export const Step3Form: FC = () => {
     return (
         <form id={`step${currentStep}`} name={`step${currentStep}`} onSubmit={submitHandler} autoComplete={"off"}>
             <StyledContainer>
-                <Title>Pick add-ons</Title>
-                <Hint>Add-ons help enhance your gaming experience.</Hint>
-                {options()}
+                <FormCaption title={"Pick add-ons"} hint={"Add-ons help enhance your gaming experience."}/>
+                <InputContainer>
+                    {options()}
+                </InputContainer>
             </StyledContainer>
         </form>
     );

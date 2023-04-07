@@ -30,8 +30,8 @@ const StyledContainer = styled.div`
     border-radius: 15px;
     padding:  15% 0px 0px 15%;
 
-    width: 274px;
-    height: 568px;
+    width: var(--sidebar-width-desktop);
+    height: var(--sidebar-height-desktop);
     
     background-size: cover;
   }

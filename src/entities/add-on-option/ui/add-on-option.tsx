@@ -13,7 +13,8 @@ const Label = styled.label`
   grid-row-gap: 5px;
 
   width: 100%;
-  height: 60px;
+  height: fit-content;
+  min-height: 60px;
 
   box-sizing: border-box;
   padding: 0px 15px 0px 15px;

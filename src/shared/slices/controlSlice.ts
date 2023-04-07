@@ -7,7 +7,7 @@ export interface IControlSlice {
 }
 
 const initialState: IControlSlice = {
-    currentStepNumber: 2,
+    currentStepNumber: 1,
 }
 
 const controlSlice = createSlice({
