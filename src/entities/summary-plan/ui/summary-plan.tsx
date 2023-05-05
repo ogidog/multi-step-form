@@ -30,6 +30,7 @@ const ChangePlan = styled.div`
   text-decoration: underline;
   grid-area: change;
   align-self: start;
+  cursor: pointer;
 `
 
 const Payment = styled.div`

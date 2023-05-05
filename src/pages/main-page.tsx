@@ -9,6 +9,7 @@ const Page = styled.div`
   
   @media (max-width: 1023px) {
     min-height: 746px;
+    max-height: 100%;
     overflow-y: auto;
   }
 
